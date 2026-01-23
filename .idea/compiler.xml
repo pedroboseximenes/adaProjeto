@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="passagem" />
-        <module name="pagamento" />
         <module name="user" />
         <module name="email" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="pagamento" target="25" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

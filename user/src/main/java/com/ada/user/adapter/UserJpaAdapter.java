@@ -1,4 +1,4 @@
-package com.ada.user.fronteira;
+package com.ada.user.adapter;
 
 import com.ada.user.core.UserUseCase;
 import com.ada.user.domain.User;

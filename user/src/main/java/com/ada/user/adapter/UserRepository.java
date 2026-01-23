@@ -1,4 +1,4 @@
-package com.ada.user.fronteira;
+package com.ada.user.adapter;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

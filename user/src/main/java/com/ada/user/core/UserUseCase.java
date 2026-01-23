@@ -1,7 +1,7 @@
 package com.ada.user.core;
 
 import com.ada.user.domain.User;
-import com.ada.user.fronteira.JpaUserEntity;
+import com.ada.user.adapter.JpaUserEntity;
 
 import java.util.Optional;
 

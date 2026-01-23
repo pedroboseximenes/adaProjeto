@@ -1,10 +1,10 @@
-package com.ada.user.entrada;
+package com.ada.user.controller;
 
 import com.ada.user.core.LoginUseCase;
 import com.ada.user.core.RegisterUseCase;
 import com.ada.user.domain.LoginResponse;
 import com.ada.user.domain.User;
-import com.ada.user.fronteira.JpaUserEntity;
+import com.ada.user.adapter.JpaUserEntity;
 import com.ada.user.security.JwtService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

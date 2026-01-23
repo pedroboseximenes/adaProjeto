@@ -1,10 +1,9 @@
 package com.ada.user.core;
 
 import com.ada.user.domain.User;
-import com.ada.user.fronteira.JpaUserEntity;
+import com.ada.user.adapter.JpaUserEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class LoginUseCase {
     private final UserUseCase repo;
