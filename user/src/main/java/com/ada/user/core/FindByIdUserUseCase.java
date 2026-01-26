@@ -1,6 +1,6 @@
 package com.ada.user.core;
 
-import com.ada.user.domain.User;
+import com.ada.user.domain.UserDTO;
 
 public class FindByIdUserUseCase {
     private final UserPort repo;
@@ -11,7 +11,7 @@ public class FindByIdUserUseCase {
 
     }
 
-    public User execute(Long id) {
+    public UserDTO execute(Long id) {
         return repo.getUserById(id).orElse(null);
     }
 }

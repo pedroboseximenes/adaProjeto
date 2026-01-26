@@ -1,8 +1,6 @@
 package com.ada.user.domain;
 
-import java.util.UUID;
-
-public record User (
+public record UserDTO(
     Long id,
     String name,
     String email,

@@ -1,9 +1,7 @@
 package com.ada.companhia_aerea.adapter.passagem;
 import com.ada.companhia_aerea.adapter.voo.JpaVooEntity;
-import com.ada.companhia_aerea.domain.Voo;
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 
@@ -22,10 +20,10 @@ public class JpaPassagemEntity  {
     private Long user_id;
 
     @Column(nullable = false)
-    private String nome_passageiro;
+    private String nome;
 
     @Column(nullable = false)
-    private String email_passageiro;
+    private String email;
 
     @Column(nullable = false)
     private LocalDateTime data_compra;
@@ -37,8 +35,8 @@ public class JpaPassagemEntity  {
         this.id = id;
         this.voo = voo;
         this.user_id = user_id;
-        this.nome_passageiro = nome_passageiro;
-        this.email_passageiro = email_passageiro;
+        this.nome = nome_passageiro;
+        this.email = email_passageiro;
         this.data_compra = LocalDateTime.now();
     }
 
@@ -64,20 +62,20 @@ public class JpaPassagemEntity  {
         this.data_compra = data_compra;
     }
 
-    public String getEmail_passageiro() {
-        return email_passageiro;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmail_passageiro(String email_passageiro) {
-        this.email_passageiro = email_passageiro;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getNome_passageiro() {
-        return nome_passageiro;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_passageiro(String nome_passageiro) {
-        this.nome_passageiro = nome_passageiro;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Long getUser_id() {

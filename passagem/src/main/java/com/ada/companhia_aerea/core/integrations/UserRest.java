@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
 public class UserRest {
-    @Value("${user.service.base-url:http://localhost:8081}")
+    @Value("${user.service.base-url}")
     private String userServiceBaseUrl;
 
 

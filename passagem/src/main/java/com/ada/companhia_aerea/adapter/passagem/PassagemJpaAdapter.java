@@ -18,6 +18,6 @@ public class PassagemJpaAdapter implements PassagemPort {
 
     @Override
     public List<JpaPassagemEntity> consultarPassagem(String nome_passageiro, String email_passageiro) {
-        return List.of();
+        return jpa.findByNomeAndEmail(nome_passageiro, email_passageiro);
     }
 }

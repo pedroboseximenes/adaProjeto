@@ -1,6 +1,6 @@
 package com.ada.user.core;
 
-import com.ada.user.domain.User;
+import com.ada.user.domain.UserDTO;
 import com.ada.user.adapter.JpaUserEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,7 +16,7 @@ public class LoginUseCase {
         this.authenticationManager = authenticationManager;
     }
 
-    public JpaUserEntity execute(User user) {
+    public JpaUserEntity execute(UserDTO user) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         user.email(),

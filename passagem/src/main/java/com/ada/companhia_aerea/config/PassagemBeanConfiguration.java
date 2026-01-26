@@ -10,12 +10,15 @@ import com.ada.companhia_aerea.core.passagem.ProcessPassagemUseCase;
 import com.ada.companhia_aerea.core.voo.GetVooByIdUseCase;
 import com.ada.companhia_aerea.core.voo.UpdateVooUseCase;
 import com.ada.companhia_aerea.producers.PassagemProducer;
+import com.ada.companhia_aerea.validation.user.ValidatorUser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Configuration
 public class PassagemBeanConfiguration {
@@ -30,15 +33,16 @@ public class PassagemBeanConfiguration {
         return new PassagemJpaAdapter(jpa);
     }
     @Bean
-    GetPassagemByNameEmailUseCase getGetPassagemByNameEmailUseCase(PassagemPort repo)   {
-        return new GetPassagemByNameEmailUseCase(repo);
+    GetPassagemByNameEmailUseCase getGetPassagemByNameEmailUseCase(PassagemPort repo, List<ValidatorUser> validatorUserList)   {
+        return new GetPassagemByNameEmailUseCase(repo, validatorUserList);
     }
 
     @Bean
     ProcessPassagemUseCase getProcessPassagemUseCase(PassagemPort repo , UserRest userRest, GetVooByIdUseCase getVooByIdUseCase,
                                                      UpdateVooUseCase updateVooUseCase,
-                                                     PassagemProducer passagemProducer )   {
-        return new ProcessPassagemUseCase(repo, userRest, getVooByIdUseCase, updateVooUseCase, passagemProducer);
+                                                     PassagemProducer passagemProducer,
+                                                     List<ValidatorUser> validatorUserList)   {
+        return new ProcessPassagemUseCase(repo, userRest, getVooByIdUseCase, updateVooUseCase, passagemProducer, validatorUserList);
     }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)  {

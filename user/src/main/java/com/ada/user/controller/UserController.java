@@ -4,7 +4,7 @@ import com.ada.user.core.FindByIdUserUseCase;
 import com.ada.user.core.LoginUseCase;
 import com.ada.user.core.RegisterUseCase;
 import com.ada.user.domain.LoginResponse;
-import com.ada.user.domain.User;
+import com.ada.user.domain.UserDTO;
 import com.ada.user.adapter.JpaUserEntity;
 import com.ada.user.security.JwtService;
 import org.springframework.http.ResponseEntity;
@@ -26,21 +26,21 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> register(@RequestBody User registerUserDto) {
-        User registeredUser = registerUseCase.execute(registerUserDto);
+    public ResponseEntity<UserDTO> register(@RequestBody UserDTO registerUserDto) {
+        UserDTO registeredUser = registerUseCase.execute(registerUserDto);
 
         return ResponseEntity.ok(registeredUser);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getById(@PathVariable Long id) {
-        User registeredUser = findByIdUserUseCase.execute(id);
+    public ResponseEntity<UserDTO> getById(@PathVariable Long id) {
+        UserDTO registeredUser = findByIdUserUseCase.execute(id);
 
         return ResponseEntity.ok(registeredUser);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody User loginUserDto) {
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody UserDTO loginUserDto) {
         JpaUserEntity authenticatedUser = loginUseCase.execute(loginUserDto);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);

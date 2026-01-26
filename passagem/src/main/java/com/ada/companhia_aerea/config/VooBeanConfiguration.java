@@ -10,6 +10,7 @@ import com.ada.companhia_aerea.core.voo.GetVooByIdUseCase;
 import com.ada.companhia_aerea.core.voo.GetVooUseCase;
 import com.ada.companhia_aerea.core.voo.UpdateVooUseCase;
 import com.ada.companhia_aerea.core.voo.VooPort;
+import com.ada.companhia_aerea.validation.voo.ValidatorVoo;
 import org.hibernate.sql.Update;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,8 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Configuration
 public class VooBeanConfiguration {
@@ -30,8 +33,8 @@ public class VooBeanConfiguration {
         return new VooJpaAdapter(jpa);
     }
     @Bean
-    GetVooUseCase getGetVooUseCase(VooPort repo)   {
-        return new GetVooUseCase(repo);
+    GetVooUseCase getGetVooUseCase(VooPort repo, List<ValidatorVoo> validatorVooList)   {
+        return new GetVooUseCase(repo, validatorVooList);
     }
     @Bean
     GetVooByIdUseCase getGetVooByIdUseCase(VooPort repo)   {

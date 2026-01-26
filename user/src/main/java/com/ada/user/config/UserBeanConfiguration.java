@@ -6,6 +6,7 @@ import com.ada.user.core.RegisterUseCase;
 import com.ada.user.core.UserPort;
 import com.ada.user.adapter.UserJpaAdapter;
 import com.ada.user.adapter.UserRepository;
+import com.ada.user.validator.user.ValidatorUser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +17,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.List;
+
 @Configuration
 public class UserBeanConfiguration {
     private final UserRepository userRepository;
@@ -24,8 +27,8 @@ public class UserBeanConfiguration {
         this.userRepository = userRepository;
     }
     @Bean
-    RegisterUseCase getRegisterUseCase(UserPort repo) {
-        return new RegisterUseCase(repo, passwordEncoder());
+    RegisterUseCase getRegisterUseCase(UserPort repo, List<ValidatorUser> validatorUserList) {
+        return new RegisterUseCase(repo, passwordEncoder(), validatorUserList);
     }
     @Bean
     FindByIdUserUseCase getFindByIdUserUseCase(UserPort repo) {
