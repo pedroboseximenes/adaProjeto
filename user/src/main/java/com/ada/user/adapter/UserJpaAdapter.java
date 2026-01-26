@@ -1,11 +1,11 @@
 package com.ada.user.adapter;
 
-import com.ada.user.core.UserUseCase;
+import com.ada.user.core.UserPort;
 import com.ada.user.domain.User;
 
 import java.util.Optional;
 
-public class UserJpaAdapter implements UserUseCase {
+public class UserJpaAdapter implements UserPort {
     private final UserRepository jpa;
 
     public UserJpaAdapter(UserRepository jpa) {
@@ -31,5 +31,17 @@ public class UserJpaAdapter implements UserUseCase {
     @Override
     public Optional<JpaUserEntity> login(User user) {
         return jpa.findByEmail(user.email());
+    }
+
+    @Override
+    public Optional<User> getUserById(Long id) {
+        Optional<JpaUserEntity> u = jpa.findById(id);
+
+        return u.map(user -> new User(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                null
+        ));
     }
 }

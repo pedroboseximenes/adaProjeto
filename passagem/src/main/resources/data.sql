@@ -1,21 +1,13 @@
-CREATE TABLE voo (
-                     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                     codigo VARCHAR(20) NOT NULL,        -- Ex: 'GOL1234'
-                     origem VARCHAR(50) NOT NULL,        -- Ex: 'GRU'
-                     destino VARCHAR(50) NOT NULL,       -- Ex: 'GIG'
-                     data_hora TIMESTAMP NOT NULL,       -- Data da partida
-                     preco DECIMAL(10, 2) NOT NULL,      -- Preço unitário
-                     assentos_totais INT NOT NULL,       -- Capacidade
-                     assentos_disponiveis INT NOT NULL   -- Controle de estoque
-);
+INSERT INTO voo (codigo, origem, destino, data_hora, preco, assentos_totais, assentos_disponiveis)
+VALUES
+-- Voo 1: São Paulo -> Rio (Preço padrão, muitos lugares)
+('G3-1234', 'SÃO PAULO', 'RIO DE JANEIRO', '2025-05-10 08:00:00', 450.00, 180, 150),
 
--- 2. Tabela de Passagens (O lado "Muitos" da relação)
-CREATE TABLE passagem (
-                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                          voo_id BIGINT NOT NULL,
-                          user_id BIGINT NOT NULL,
-                          nome_passageiro VARCHAR(255) NOT NULL,
-                          email_passageiro VARCHAR(255) NOT NULL,
-                          data_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                          FOREIGN KEY (voo_id) REFERENCES voo(id)
-);
+-- Voo 2: Brasília -> Salvador (Voo mais caro, quase lotado)
+('LA-4500', 'BRASILIA', 'SALVADOR', '2025-05-12 14:30:00', 890.50, 160, 5),
+
+-- Voo 3: Campinas -> Belo Horizonte (Voo barato, lotação média)
+('AD-2020', 'CAMPINAS', 'BELO HORIZONTE', '2025-05-15 09:15:00', 230.90, 118, 60),
+
+-- Voo 4: Recife -> Fortaleza (Voo noturno, vazio)
+('VOE-99', 'RECIFE', 'FORTALEZA', '2025-05-20 23:00:00', 380.00, 150, 150);

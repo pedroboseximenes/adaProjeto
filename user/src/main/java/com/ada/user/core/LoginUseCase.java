@@ -6,11 +6,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 public class LoginUseCase {
-    private final UserUseCase repo;
+    private final UserPort repo;
 
     private final AuthenticationManager authenticationManager;
 
-    public LoginUseCase(UserUseCase repo,  AuthenticationManager authenticationManager) {
+    public LoginUseCase(UserPort repo, AuthenticationManager authenticationManager) {
         this.repo = repo;
 
         this.authenticationManager = authenticationManager;

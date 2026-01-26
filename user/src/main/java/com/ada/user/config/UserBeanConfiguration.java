@@ -1,8 +1,9 @@
 package com.ada.user.config;
 
+import com.ada.user.core.FindByIdUserUseCase;
 import com.ada.user.core.LoginUseCase;
 import com.ada.user.core.RegisterUseCase;
-import com.ada.user.core.UserUseCase;
+import com.ada.user.core.UserPort;
 import com.ada.user.adapter.UserJpaAdapter;
 import com.ada.user.adapter.UserRepository;
 import org.springframework.context.annotation.Bean;
@@ -23,17 +24,20 @@ public class UserBeanConfiguration {
         this.userRepository = userRepository;
     }
     @Bean
-    RegisterUseCase getRegisterUseCase(UserUseCase repo) {
+    RegisterUseCase getRegisterUseCase(UserPort repo) {
         return new RegisterUseCase(repo, passwordEncoder());
     }
-
     @Bean
-    UserUseCase userRepositoryPort(UserRepository jpa) {
+    FindByIdUserUseCase getFindByIdUserUseCase(UserPort repo) {
+        return new FindByIdUserUseCase(repo);
+    }
+    @Bean
+    UserPort userRepositoryPort(UserRepository jpa) {
         return new UserJpaAdapter(jpa);
     }
 
     @Bean
-    LoginUseCase getLoginUseCase(UserUseCase repo, AuthenticationManager authManager)   {
+    LoginUseCase getLoginUseCase(UserPort repo, AuthenticationManager authManager)   {
         return new LoginUseCase(repo,authManager);
     }
     @Bean
