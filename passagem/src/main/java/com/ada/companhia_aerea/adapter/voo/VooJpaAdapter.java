@@ -3,6 +3,10 @@ package com.ada.companhia_aerea.adapter.voo;
 import com.ada.companhia_aerea.core.voo.VooPort;
 import com.ada.companhia_aerea.domain.FiltroConsultaVoo;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +18,15 @@ public class VooJpaAdapter implements VooPort {
     }
     @Override
     public List<JpaVooEntity> consultVoo(FiltroConsultaVoo filtro) {
-        return jpa.findByOrigemAndDestino(filtro.origem(), filtro.destino()).orElse(null);
+        if(verificarDataEstaPreenchida(filtro.dataIda())) {
+            return jpa.findByOrigemAndDestino(filtro.origem(), filtro.destino());
+        }
+
+        LocalDate date = LocalDate.parse(filtro.dataIda(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDateTime inicioDia = date.atStartOfDay();
+        LocalDateTime fimDia = date.atTime(LocalTime.MAX);
+
+        return jpa.findByOrigemAndDestinoAndDataHoraBetween(filtro.origem(), filtro.destino(), inicioDia, fimDia);
     }
 
     @Override
@@ -29,5 +41,9 @@ public class VooJpaAdapter implements VooPort {
     @Override
     public Optional<JpaVooEntity> consultById(Long vooId) {
         return jpa.findById(vooId);
+    }
+
+    private boolean verificarDataEstaPreenchida(String dataIda){
+        return dataIda == null || dataIda.isEmpty();
     }
 }

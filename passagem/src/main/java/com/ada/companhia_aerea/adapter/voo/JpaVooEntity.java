@@ -1,9 +1,9 @@
 package com.ada.companhia_aerea.adapter.voo;
 import com.ada.companhia_aerea.adapter.passagem.JpaPassagemEntity;
-import com.ada.companhia_aerea.domain.Passagem;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class JpaVooEntity  {
     private String destino;
 
     @Column(nullable = false)
-    private String data_hora;
+    private LocalDateTime dataHora;
 
     @Column(nullable = false)
     private BigDecimal preco;
@@ -40,13 +40,13 @@ public class JpaVooEntity  {
 
     protected JpaVooEntity() {}
 
-    public JpaVooEntity(Long id, String codigo, String origem, String destino, String data_hora, BigDecimal preco, Integer assentos_totais,
+    public JpaVooEntity(Long id, String codigo, String origem, String destino, LocalDateTime data_hora, BigDecimal preco, Integer assentos_totais,
                         Integer assentos_disponiveis) {
         this.id = id;
         this.codigo = codigo;
         this.origem = origem;
         this.destino = destino;
-        this.data_hora = data_hora;
+        this.dataHora = data_hora;
         this.preco = preco;
         this.assentos_totais = assentos_totais;
         this.assentos_disponiveis = assentos_disponiveis;
@@ -83,12 +83,12 @@ public class JpaVooEntity  {
         this.destino = destino;
     }
 
-    public String getData_hora() {
-        return data_hora;
+    public LocalDateTime getDataHora() {
+        return dataHora;
     }
 
-    public void setData_hora(String data_hora) {
-        this.data_hora = data_hora;
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 
     public BigDecimal getPreco() {
