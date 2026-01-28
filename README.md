@@ -14,7 +14,7 @@
 
 4. Diagrama simples da arquitetura (imagem ou ASCII)
    
-   #COLOCAR IMAGEM
+ ![screenshot](arquitetura.jpg)
    
 5. Justificativa das decisões arquiteturais
    
