@@ -37,9 +37,9 @@ public class ProcessPassagemUseCase {
     /*
      * Compra uma passagem após validar que o usuário existe.
      */
-    public void execute(PassagemCompraDTO passagem){
+    public void execute(PassagemCompraDTO passagem, String tokenJwt){
         UserDTO user;
-        user = userRest.getUserById(passagem.userId());
+        user = userRest.getUserById(passagem.userId(), tokenJwt);
         try {
             validatorUserList.forEach(v -> v.validar(user));
 

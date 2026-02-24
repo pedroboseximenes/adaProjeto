@@ -27,8 +27,9 @@ public class PassagemController {
         return passagens;
     }
     @PostMapping
-    public ResponseEntity<String> buyPassagem(@RequestBody PassagemCompraDTO passagemCompraDTO) {
-        processPassagemUseCase.execute(passagemCompraDTO);
+    public ResponseEntity<String> buyPassagem(@RequestBody PassagemCompraDTO passagemCompraDTO,
+                                                @RequestHeader("Authorization") String tokenJwt) {
+        processPassagemUseCase.execute(passagemCompraDTO, tokenJwt);
         return ResponseEntity.ok("Requisição em processamento. Confira seu email.");
     }
 }

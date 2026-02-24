@@ -23,6 +23,17 @@
 6. Instruções para execução do projeto
    
   Para executar o projeto é necessário instalar inteliJJ, eclipse ou vsCode. Necessário instalado o JDK 25 para executação dos serviços.
-   Após isso, abrir cada projeto separadamente e baixar as dependências dos respectivos pom's.xml. Após instalar todas as dependências, apenas rodar o RunApplication de cada serviço (cada está configurado com portas distintas, sendo 8081: user, 8082: passagens/voo e 8083: email).
+  Após isso, abrir cada projeto separadamente e baixar as dependências dos respectivos pom's.xml. Após instalar todas as dependências, apenas rodar o RunApplication de cada serviço (cada está configurado com portas distintas, sendo 8081: user, 8082: passagens/voo e 8083: email).
+
+  Agora com docker, é necessário primeiramente em cada projeto inicializar o build do docker. Entrando em cada serviço, rode no diretório do Dockerfile o comando:
+
+  docker build -t 'nome_da_imagem' .
+
+  Ele irá realizar as etapas do dockerFile, baixando as dependências e fazendo o build do java.
+  Após isso, execute o comando para rodar a imagem do docker:
+  
+  docker run --env-file .env -p 8081:8081 'nome_da_imagem' 
+
+  É necessário o .env file, pois existem as configurações da SECRET_KEY e a chave do RABBITMQ.
    
 7. Nome completo: Pedro Henrique Bose Ximenes Pedrosa

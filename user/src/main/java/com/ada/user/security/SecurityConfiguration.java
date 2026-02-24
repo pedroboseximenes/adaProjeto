@@ -33,8 +33,7 @@ public class SecurityConfiguration {
         http.csrf(csrfCustomizer -> csrfCustomizer.disable()
                                                 .authorizeHttpRequests(authCustomizer -> authCustomizer
                                                                     .requestMatchers("/h2/**").permitAll()
-                                                                    .requestMatchers("/auth/**")
-                                                        .permitAll()
+                                                                    .requestMatchers("/auth/**").permitAll()
                                                         )
                                                 .sessionManagement(sessionManagementCustomizer ->
                                                         sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -50,7 +49,6 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:8081"));
         configuration.setAllowedMethods(List.of("GET","POST"));
         configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
 

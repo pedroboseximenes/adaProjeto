@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ada</groupId>
 	<artifactId>passagem</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>passagem</name>
 	<description>Project Ada Java</description>
 	<url/>
