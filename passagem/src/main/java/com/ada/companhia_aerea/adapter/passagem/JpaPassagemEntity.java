@@ -1,5 +1,4 @@
 package com.ada.companhia_aerea.adapter.passagem;
-import com.ada.companhia_aerea.adapter.voo.JpaVooEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -12,9 +11,8 @@ public class JpaPassagemEntity  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "voo_id", nullable = false)
-    private JpaVooEntity voo;
+    @Column(nullable = false)
+    private Long voo;
 
     @Column(nullable = false)
     private Long user_id;
@@ -31,7 +29,7 @@ public class JpaPassagemEntity  {
 
     protected JpaPassagemEntity() {}
 
-    public JpaPassagemEntity(Long id, JpaVooEntity voo, Long user_id, String nome_passageiro, String email_passageiro) {
+    public JpaPassagemEntity(Long id, Long voo, Long user_id, String nome_passageiro, String email_passageiro) {
         this.id = id;
         this.voo = voo;
         this.user_id = user_id;
@@ -46,11 +44,11 @@ public class JpaPassagemEntity  {
         this.id = id;
     }
 
-    public JpaVooEntity getVoo() {
+    public Long getVoo() {
         return voo;
     }
 
-    public void setVoo(JpaVooEntity voo) {
+    public void setVoo(Long voo) {
         this.voo = voo;
     }
 

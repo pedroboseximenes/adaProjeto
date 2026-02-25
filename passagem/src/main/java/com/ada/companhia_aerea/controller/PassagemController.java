@@ -2,7 +2,6 @@ package com.ada.companhia_aerea.controller;
 
 import com.ada.companhia_aerea.core.passagem.GetPassagemByNameEmailUseCase;
 import com.ada.companhia_aerea.core.passagem.ProcessPassagemUseCase;
-import com.ada.companhia_aerea.core.voo.GetVooUseCase;
 import com.ada.companhia_aerea.domain.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

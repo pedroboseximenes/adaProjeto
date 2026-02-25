@@ -4,11 +4,10 @@ package com.ada.companhia_aerea.config;
 import com.ada.companhia_aerea.adapter.passagem.PassagemJpaAdapter;
 import com.ada.companhia_aerea.adapter.passagem.PassagemRepository;
 import com.ada.companhia_aerea.core.integrations.UserRest;
+import com.ada.companhia_aerea.core.integrations.VooRest;
 import com.ada.companhia_aerea.core.passagem.GetPassagemByNameEmailUseCase;
 import com.ada.companhia_aerea.core.passagem.PassagemPort;
 import com.ada.companhia_aerea.core.passagem.ProcessPassagemUseCase;
-import com.ada.companhia_aerea.core.voo.GetVooByIdUseCase;
-import com.ada.companhia_aerea.core.voo.UpdateVooUseCase;
 import com.ada.companhia_aerea.producers.PassagemProducer;
 import com.ada.companhia_aerea.validation.user.ValidatorUser;
 import org.springframework.context.annotation.Bean;
@@ -38,11 +37,12 @@ public class PassagemBeanConfiguration {
     }
 
     @Bean
-    ProcessPassagemUseCase getProcessPassagemUseCase(PassagemPort repo , UserRest userRest, GetVooByIdUseCase getVooByIdUseCase,
-                                                     UpdateVooUseCase updateVooUseCase,
+    ProcessPassagemUseCase getProcessPassagemUseCase(PassagemPort repo , 
+                                                    UserRest userRest,
+                                                    VooRest vooRest,
                                                      PassagemProducer passagemProducer,
                                                      List<ValidatorUser> validatorUserList)   {
-        return new ProcessPassagemUseCase(repo, userRest, getVooByIdUseCase, updateVooUseCase, passagemProducer, validatorUserList);
+        return new ProcessPassagemUseCase(repo, userRest, vooRest , passagemProducer, validatorUserList);
     }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)  {
@@ -51,6 +51,10 @@ public class PassagemBeanConfiguration {
     @Bean
     UserRest userRest(RestTemplate restTemplate )   {
         return new UserRest(restTemplate);
+    }
+    @Bean
+    VooRest vooRest(RestTemplate restTemplate )   {
+        return new VooRest(restTemplate);
     }
     @Bean
     public RestTemplate restTemplate() {

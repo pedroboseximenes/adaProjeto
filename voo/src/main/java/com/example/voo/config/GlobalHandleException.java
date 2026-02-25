@@ -1,7 +1,7 @@
-package com.ada.companhia_aerea.config;
+package com.example.voo.config;
 
-import com.ada.companhia_aerea.exceptions.UserNotFoundException;
-import com.ada.companhia_aerea.exceptions.VooNotFoundException;
+import com.example.voo.exceptions.DateBeforeVooException;
+import com.example.voo.exceptions.VooNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

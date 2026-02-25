@@ -23,7 +23,7 @@ public class GetPassagemByNameEmailUseCase {
 
         List<JpaPassagemEntity> passagemEntites = repo.consultarPassagem(userDTO.name(), userDTO.email());
         return passagemEntites.stream().map(p -> new Passagem(p.getId(),
-                p.getVoo().getId(), p.getUser_id(),
+                p.getVoo(), p.getUser_id(),
                 p.getNome(), p.getEmail(),
                 p.getData_compra()
                )).toList();
