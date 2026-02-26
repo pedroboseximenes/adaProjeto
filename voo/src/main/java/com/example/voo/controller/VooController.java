@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.List;
 
 @RestController
-@RequestMapping("/voo")
+@RequestMapping
 public class VooController {
     private final GetVooUseCase getVooUseCase;
     private final GetVooByIdUseCase getVooByIdUseCase;

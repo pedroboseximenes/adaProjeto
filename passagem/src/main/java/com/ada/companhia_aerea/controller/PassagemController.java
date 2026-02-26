@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/passagem")
-
+@RequestMapping
 public class PassagemController {
     private final ProcessPassagemUseCase processPassagemUseCase;
     private final GetPassagemByNameEmailUseCase getPassagemByNameEmailUseCase;

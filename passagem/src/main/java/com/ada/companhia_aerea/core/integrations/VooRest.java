@@ -21,7 +21,7 @@ public class VooRest {
     }
 
     public Optional<Voo> getUserById(Long id, String tokenJwt) {
-        String url = vooServiceBaseUrl + "/voo/{id}";
+        String url = vooServiceBaseUrl + "/{id}";
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", tokenJwt); 
 
@@ -41,7 +41,7 @@ public class VooRest {
     }
 
     public void updateVoo(Long id, String tokenJwt) {
-        String url = vooServiceBaseUrl + "/voo/{id}";
+        String url = vooServiceBaseUrl + "/{id}";
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", tokenJwt); 
 
