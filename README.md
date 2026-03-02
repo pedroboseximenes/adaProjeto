@@ -1,39 +1,82 @@
-1. Descrição do problema
-  O sistema previsto para realizar o processamento de passagem aérea de um usuário.
-2. Objetivo do sistema 
-   - 
-   Registrar/entrar usuário
-   Consultar Voos
-   Comprar Passagem
-   Consultar Passagem de um usário
-   Realizar Processamento do Email de Confirmação
-   
-3. Estilo arquitetural adotado
-   
-   Estilo adotado foi de arquitetura orientada a serviços (SOA), tendo os seguintes serviços: user, companinha_area (o principal que realiza a consulta de voos) e email (enviar email para usuario).
+# ✈️ Sistema de Processamento de Passagens Aéreas
 
-4. Diagrama simples da arquitetura (imagem ou ASCII)
-   
- ![screenshot](arquitetura.jpg)
-   
-5. Justificativa das decisões arquiteturais
-   
-  Foi escolhido o SOA, pois, os serviços podem ser reutilizados em outros contextos, os serviços são independentes, logo,  eles tem baixo acoplamento, contribuindo para a manutenção do projeto.
-   
-6. Instruções para execução do projeto
-   
-  Para executar o projeto é necessário instalar inteliJJ, eclipse ou vsCode. Necessário instalado o JDK 25 para executação dos serviços.
-  Após isso, abrir cada projeto separadamente e baixar as dependências dos respectivos pom's.xml. Após instalar todas as dependências, apenas rodar o RunApplication de cada serviço (cada está configurado com portas distintas, sendo 8081: user, 8082: passagens/voo e 8083: email).
+## 📌 1. Descrição do Problema
 
-  Agora com docker, é necessário primeiramente em cada projeto inicializar o build do docker. Entrando em cada serviço, rode no diretório do Dockerfile o comando:
+O sistema foi desenvolvido para realizar o processamento de compra de passagens aéreas por um usuário, contemplando desde o cadastro até o envio do e-mail de confirmação.
 
-  docker build -t 'nome_da_imagem' .
+---
 
-  Ele irá realizar as etapas do dockerFile, baixando as dependências e fazendo o build do java.
-  Após isso, execute o comando para rodar a imagem do docker:
-  
-  docker run --env-file .env -p 8081:8081 'nome_da_imagem' 
+## 🎯 2. Objetivo do Sistema
 
-  É necessário o .env file, pois existem as configurações da SECRET_KEY e a chave do RABBITMQ.
-   
-7. Nome completo: Pedro Henrique Bose Ximenes Pedrosa
+O sistema deve permitir:
+
+- Registrar / autenticar usuário  
+- Consultar voos  
+- Comprar passagem  
+- Consultar passagem de um usuário  
+- Realizar processamento e envio de e-mail de confirmação  
+
+---
+
+## 🏗️ 3. Estilo Arquitetural Adotado
+
+O estilo arquitetural adotado foi **Arquitetura Orientada a Serviços (SOA)**.
+
+### Serviços implementados:
+
+- **user** → Responsável pelo cadastro e autenticação de usuários  
+- **passagem** → Serviço principal responsável pela compra de passagem 
+- **voo** → Serviço principal responsável pela consulta de voos  
+- **email** → Responsável pelo envio do e-mail de confirmação  
+
+---
+
+## 🧩 4. Diagrama da Arquitetura
+
+![Diagrama da Arquitetura](arquitetura.jpg)
+
+
+
+## 🚀 6. Instruções para Execução do Projeto
+
+### 🔹 Execução Local (Sem Docker)
+
+### Pré-requisitos:
+
+- IntelliJ, Eclipse ou VSCode  
+- JDK 25 instalado  
+
+### Passos:
+
+1. Abrir cada projeto separadamente na IDE.
+2. Baixar as dependências definidas nos arquivos `pom.xml`.
+3. Executar a classe principal (`RunApplication`) de cada serviço.
+
+### Portas utilizadas:
+
+- **8081** → Serviço `user`
+- **8082** → Serviço `passagem`
+- **8083** → Serviço `voo`
+- **8084** → Serviço `email`
+
+---
+
+## 🐳 Execução com Docker
+
+### 1️⃣ Build da imagem
+
+Para gerar as imagens do docker: Entre no diretório onde está o `Dockerfile` de cada serviço e execute:
+
+```bash
+docker build -t nome_da_imagem .
+```
+
+Para rodar todo o projeto com docker compose, entre no diretório raiz do projeto e execute:
+
+```bash
+docker compose up --build
+```
+
+7. Autor
+
+Pedro Henrique Bose Ximenes Pedrosa
