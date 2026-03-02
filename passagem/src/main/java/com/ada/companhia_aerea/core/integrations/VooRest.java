@@ -22,11 +22,8 @@ public class VooRest {
 
     public Optional<Voo> getUserById(Long id, String tokenJwt) {
         String url = vooServiceBaseUrl + "/{id}";
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", tokenJwt); 
 
-
-        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        HttpEntity<Void> requestEntity = criarHttpEntity(tokenJwt);
 
         ResponseEntity<Voo> response = restTemplate.exchange(
                 url,                    
@@ -42,18 +39,22 @@ public class VooRest {
 
     public void updateVoo(Long id, String tokenJwt) {
         String url = vooServiceBaseUrl + "/{id}";
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", tokenJwt); 
-
-
-        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        HttpEntity<Void> requestEntity = criarHttpEntity(tokenJwt);
 
         ResponseEntity<Void> response = restTemplate.exchange(
                 url, 
-                HttpMethod.POST, 
+                HttpMethod.PATCH, 
                 requestEntity, 
                 Void.class, // Indica que não esperamos um corpo de resposta
                 id
         );
 }
+
+    private HttpEntity<Void> criarHttpEntity(String tokenJwt){
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", tokenJwt); 
+
+
+        return new HttpEntity<>(headers);
+    }
 }

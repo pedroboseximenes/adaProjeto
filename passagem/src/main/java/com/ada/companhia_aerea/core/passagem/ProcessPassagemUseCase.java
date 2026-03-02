@@ -50,7 +50,7 @@ public class ProcessPassagemUseCase {
 
             JpaPassagemEntity passagemSaved = repo.processarNovaPassagem(passagemEntity);
             vooRest.updateVoo(passagem.vooId(), tokenJwt);
-            passagemProducer.publishMessageEmail(passagemSaved);
+            passagemProducer.publishMessageEmail(passagemSaved, vooEncontrado);
 
         } catch(UserNotFoundException e){
             throw e;

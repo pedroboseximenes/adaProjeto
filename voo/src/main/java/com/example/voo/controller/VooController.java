@@ -37,7 +37,7 @@ public class VooController {
         return getVooByIdUseCase.execute(vooId);        
     }
 
-    @PostMapping("/{vooId}")
+    @PatchMapping("/{vooId}")
     public void atualizar(@PathVariable Long vooId){
         updateVooUseCase.execute(vooId);
     }
