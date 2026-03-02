@@ -1,12 +1,12 @@
-# ✈️ Sistema de Processamento de Passagens Aéreas
+#  Sistema de Processamento de Passagens Aéreas
 
-## 📌 1. Descrição do Problema
+##  1. Descrição do Problema
 
 O sistema foi desenvolvido para realizar o processamento de compra de passagens aéreas por um usuário, contemplando desde o cadastro até o envio do e-mail de confirmação.
 
 ---
 
-## 🎯 2. Objetivo do Sistema
+##  2. Objetivo do Sistema
 
 O sistema deve permitir:
 
@@ -18,7 +18,7 @@ O sistema deve permitir:
 
 ---
 
-## 🏗️ 3. Estilo Arquitetural Adotado
+##  3. Estilo Arquitetural Adotado
 
 O estilo arquitetural adotado foi **Arquitetura Orientada a Serviços (SOA)**.
 
@@ -31,15 +31,15 @@ O estilo arquitetural adotado foi **Arquitetura Orientada a Serviços (SOA)**.
 
 ---
 
-## 🧩 4. Diagrama da Arquitetura
+##  4. Diagrama da Arquitetura
 
-![Diagrama da Arquitetura](arquitetura.jpg)
+![Diagrama da Arquitetura](imgs/arquiteturaImagem.png)
 
 
 
-## 🚀 6. Instruções para Execução do Projeto
+##  6. Instruções para Execução do Projeto
 
-### 🔹 Execução Local (Sem Docker)
+###  Execução Local (Sem Docker)
 
 ### Pré-requisitos:
 
@@ -77,6 +77,34 @@ Para rodar todo o projeto com docker compose, entre no diretório raiz do projet
 docker compose up --build
 ```
 
-7. Autor
+## 7. Testes
+
+Primeiro teste, consiste em tentar acessar o servidor pela porta do serviço (8081) e não por via do nginx porta 80.
+
+![Teste Acessando com a porta 8081](imgs/testeAcessandoPortaDiretamente.png)
+
+O outro teste é os headers adicionado por segurança, em que é possível analisar na imagem a seguir.
+
+![Teste headers de segurança](imgs/testeAcessandoNginxComHeaders.png)
+
+O teste seguinte, limitar em 1MB o tamanho do arquivo.
+
+![Teste limite tamanho do envio](imgs/erro413.png)
+
+
+O teste seguinte, limitar máximo de 5 requisições por segundo pelo mesmo IP, com burst permitido de 10.
+
+![Teste limite tamanho do envio](imgs/error429.png)
+
+O teste seguinte, inserção de cache por 10 segundos em requisições GET  sem autenticação .
+
+![Teste limite tamanho do envio](imgs/cache.png)
+
+O teste seguinte, o log da aplicação do nginx com IP do cliente, método HTTP, Status, Tempo de resposta.
+
+![Teste limite tamanho do envio](imgs/log.png)
+
+
+## 8. Aluno
 
 Pedro Henrique Bose Ximenes Pedrosa
